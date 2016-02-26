@@ -14,22 +14,22 @@ namespace NQLauncherCon
     {
         static void Main(string[] args)
         {
-			// The location where the NQMod dir is located
-			string NQLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MP_MODSPACK");
+            // The location where the NQMod dir is located
+            string NQLocation = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "MP_MODSPACK");
 
             // Get the Location where Civ V is installed from registry, for various reasons
-    		string CivKeyName = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\steam app 8930";
-	    	string CivValueName = "InstallLocation";
-		    string CivLocation = (String)Registry.GetValue(CivKeyName, CivValueName, "");
+            string CivKeyName = "HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\steam app 8930";
+            string CivValueName = "InstallLocation";
+            string CivLocation = (String)Registry.GetValue(CivKeyName, CivValueName, "");
             string NQTarget = Path.Combine(CivLocation, "Assets\\DLC\\MP_MODSPACK");
-		
-		    // GMR's config file, for various reasons
-    		string GMRConfigFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GMR\\settings.xml");
-	    	XmlDocument GMRConf = new XmlDocument();
-		    GMRConf.Load(GMRConfigFile);
-    		// The DirectX version as configured in GMR
+        
+            // GMR's config file, for various reasons
+            string GMRConfigFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GMR\\settings.xml");
+            XmlDocument GMRConf = new XmlDocument();
+            GMRConf.Load(GMRConfigFile);
+            // The DirectX version as configured in GMR
             XmlNodeList DXVers = GMRConf.SelectNodes("Settings/CivDirectXVersionInt");
-			
+            
             string launcherCmd = Path.Combine(CivLocation, "CivilizationV.exe");
             string launcherArgs = "";
             string checkProcess = "";
